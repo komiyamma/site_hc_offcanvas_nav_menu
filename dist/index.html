@@ -1,0 +1,523 @@
+<!DOCTYPE HTML>
+<html lang="ja">
+
+<head>
+  <title>a</title>
+  <link rel="stylesheet" href="hc-offcanvas-nav.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="hc-offcanvas-nav.js?ver=6.1.5"></script>
+
+<style>
+ul.bottom-nav,
+.hc-offcanvas-nav.nav-position-bottom ul.bottom-nav {
+    position: relative;
+    border-top: none
+}
+
+.hc-offcanvas-nav.nav-position-top .nav-wrapper-0>.nav-content,
+.hc-offcanvas-nav.nav-position-bottom .nav-wrapper-0>.nav-content {
+    padding-bottom: 0
+}
+
+.hc-offcanvas-nav ul.bottom-nav {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    border-top: 1px solid rgba(0, 0, 0, 0.15)
+}
+
+.hc-offcanvas-nav ul.bottom-nav li {
+    flex: auto
+}
+
+.hc-offcanvas-nav ul.bottom-nav li a {
+    padding: 10px;
+    text-align: center;
+    height: 100%;
+    border-bottom: none
+}
+
+.hc-offcanvas-nav ul.bottom-nav li svg {
+    fill: #fff;
+    display: inline-block;
+    vertical-align: middle
+}
+
+
+body.theme-default .hc-offcanvas-nav .second-nav {
+    border-bottom: none !important
+}
+</style>
+</head>
+
+<body class="theme-default">
+<!-- nav id="main-nav">
+  
+  <ul>
+    <li><a href="#">Home</a></li>
+    <li><a href="#">About</a></li>
+    <li>
+      <a href="#">Services</a>
+      <ul>
+        <li>
+          <a href="#">Hosting</a>
+          <ul>
+            <li><a href="#">Private Server</a></li>
+            <li><a href="#">Managed Hosting</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Domains</a></li>
+        <li><a href="#">Websites</a></li>
+      </ul>
+    </li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+</nav -->
+<!--nav id="main-nav">
+        
+        <ul>
+            <li><a href="#"><i class="fa fa-hidemaru fa-fw"></i><span id="nobu_tool_hm_home">ホーム</span></a></li>
+
+            <li>
+                <a href="#"><i class="fa fa-office-app fa-fw"></i>Office 連携</a>
+                
+                <ul>
+                    <li>
+                        <a href="#"><i class="fa fa-excel-app fa-fw"></i>秀丸・HmExcelFileLoader</a>
+                        
+                        <ul>
+                            <li><a href="?page=nobu_tool_hm_excel_file_loader"><i class="fa fa-excel-app fa-fw"></i><span id="nobu_tool_hm_excel_file_loader">秀丸・HmExcelFileLoader</span></a></li>
+                            <li><a href="?page=nobu_tool_hm_excel_file_loader_update"><i class="fa fa-history-o fa-fw"></i><span id="nobu_tool_hm_excel_file_loader_update">更新履歴</span></a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-github fa-fw"></i>リポジトリ 連携</a>
+                
+                <ul>
+                    <li>
+                        <a href="#"><i class="fa fa-vscode fa-fw"></i>秀丸→VSCode起動 (Github利用)</a>
+                        
+                        <ul>
+                            <li><a href="?page=nobu_tool_hm_open_vscode_from_hidemaru"><i class="fa fa-vscode fa-fw"></i><span id="nobu_tool_hm_open_vscode_from_hidemaru">HmOpenVSCodeFromHidemaru</span></a></li>
+                            <li><a href="?page=nobu_tool_hm_open_hidemaru_from_vscode"><i class="fa fa-vscode fa-fw"></i><span id="nobu_tool_hm_open_hidemaru_from_vscode">VSCode → Hidemaru を開く</span></a></li>
+                            <li><a href="?page=nobu_tool_hm_open_vscode_from_hidemaru_update"><i class="fa fa-history fa-fw"></i><span id="nobu_tool_hm_open_vscode_from_hidemaru_update">更新情報</span></a></li>
+                        </ul>
+                    </li>
+                    <li><a href="?page=nobu_tool_hm_ver_perforce_checkinout"><i class="fa fa-history fa-fw"></i><span id="nobu_tool_hm_ver_perforce_checkinout">Perforceへのチェックイン・アウト</span></a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-files-o fa-fw"></i>ファイル分割</a>
+                
+                <ul>
+                    <li><a href="?page=nobu_tool_hm_split_textfile_byline"><i class="fa fa-filse-o fa-fw"></i><span id="nobu_tool_hm_split_textfile_byline">行数で分割</span></a></li>
+                    <li><a href="?page=nobu_tool_hm_split_textfile_bysize"><i class="fa fa-filse-o fa-fw"></i><span id="nobu_tool_hm_split_textfile_bysize">ファイルサイズで分割</span></a></li>
+                    <li><a href="?page=nobu_tool_hm_split_textfile_byregex"><i class="fa fa-filse-o fa-fw"></i><span id="nobu_tool_hm_split_textfile_byregex">語句や正規表現で分割</span></a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-share-alt-square fa-fw"></i>秀丸マクロ自体の処理</a>
+                
+                <ul>
+                    <li><a href="?page=nobu_tool_hm_macro_observed_encode"><i class="fa fa-check-square-o fa-fw"></i><span id="nobu_tool_hm_macro_observed_encode">秀丸マクロファイルのセーブ時に文字コード＆BOMチェック</span></a></li>
+                    <li><a href="?page=nobu_tool_hm_event_macro_tips"><i class="fa fa-puzzle-piece fa-fw"></i><span id="nobu_tool_hm_event_macro_tips">自動起動マクロのまとめ方</span></a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-gears fa-fw"></i>その他</a>
+                
+                <ul>
+                    <li><a href="?page=nobu_tool_hm_allkill"><i class="fa fa-window-close-o fa-fw"></i><span id="nobu_tool_hm_allkill">HmAllKill（全ての秀丸エディタ強制終了）</span></a></li>
+                    <li><a href="?page=nobu_tool_hm_github_gitzip"><i class="fa fa-github fa-fw"></i><span id="nobu_tool_hm_github_gitzip">ChromeでGithubのリポジトリのサブディレクトリだけ取得</span></a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-pencil-square-o fa-fw"></i>dll作成のための知識</a>
+                
+                <ul>
+                    <li>
+                        <a href="#"><i class="fa fa-pencil-square-o fa-fw"></i><span style="display:none">dll作成</span>C++/CLI 編</a>
+                        
+                        <ul>
+                            <li><a href="?page=nobu_cppcli_reference_hm_dll_assmblyresolve"><i class="fa fa-book fa-fw"></i><span id="nobu_cppcli_reference_hm_dll_assmblyresolve">C++/CLIによるdllでの、マネージ.dllの参照</span></a></li>
+                            <li><a href="?page=nobu_cppcli_reference_hm_cs_dll_staticlink"><i class="fa fa-book fa-fw"></i><span id="nobu_cppcli_reference_hm_cs_dll_staticlink">C#のソースコードをC++/CLIへと静的リンク</span></a></li>
+                            <li><a href="?page=nobu_cppcli_reference_language_index"><i class="fa fa-list-ol fa-fw"></i><span id="nobu_cppcli_reference_language_index">C++/CLI 言語仕様 リンク</span></a></li>
+                            <li><a href="?page=nobu_cppcli_reference_language_book"><i class="fa fa-book fa-fw"></i><span id="nobu_cppcli_reference_language_book">C++/CLI 書籍 紹介</span></a></li>
+                            <li>
+                                <a href="#"><i class="fa fa-gears fa-fw"></i>C++/CLI 必須ツール</a>
+                                
+                                <ul>
+                                    <li><a href="?page=nobu_cppcli_required_tool_converter"><i class="fa fa-gears fa-fw"></i><span id="nobu_cppcli_required_tool_converter">言語コンバータ</span></a></li>
+                                    <li><a href="?page=nobu_cppcli_required_tool_wysiwyg"><i class="fa fa-gears fa-fw"></i><span id="nobu_cppcli_required_tool_wysiwyg">オーサリングツール</span></a></li>
+                                </ul>
+                            </li>
+                            <li><a href="?page=nobu_cppcli_reference_dotnet_framework_index"><i class="fa fa-list-ol fa-fw"></i><span id="nobu_cppcli_reference_dotnet_framework_index">C++/CLI .NET FrameWork リンク</span></a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-pencil-square-o fa-fw"></i><span style="display:none">dll作成</span>C# 編</a>
+                        
+                        <ul>
+                            <li><a href="?page=nobu_cs_reference_dotnet_hidemaru"><i class="fa fa-list-ol fa-fw"></i><span id="nobu_cs_reference_dotnet_hidemaru">秀丸マクロ用の.dllをC#で作る４つの方法</span></a></li>
+                            <li><a href="?page=nobu_cs_reference_hm_dll_getstaticstrptr"><i class="fa fa-book fa-fw"></i><span id="nobu_cs_reference_hm_dll_getstaticstrptr">C++のchar *要求とC#のString</span></a></li>
+                            <li><a href="?page=nobu_cs_reference_hm_dll_async_nature"><i class="fa fa-book fa-fw"></i><span id="nobu_cs_reference_hm_dll_async_nature">非同期の特性と、処理の後片付け</span></a></li>
+                            <li><a href="?page=nobu_cs_reference_hm_dll_tasklogger"><i class="fa fa-book fa-fw"></i><span id="nobu_cs_reference_hm_dll_tasklogger">非同期のタスクロガー</span></a></li>
+                            <li><a href="?page=nobu_cs_reference_language_index"><i class="fa fa-list-ol fa-fw"></i><span id="nobu_cs_reference_language_index">C# 言語仕様 リンク</span></a></li>
+                            <li><a href="?page=nobu_cs_reference_language_book"><i class="fa fa-book fa-fw"></i><span id="nobu_cs_reference_language_book">C# 書籍 紹介</span></a></li>
+                            <li><a href="?page=nobu_cs_reference_dotnet_framework_index"><i class="fa fa-list-ol fa-fw"></i><span id="nobu_cs_reference_dotnet_framework_index">C# .NET FrameWork リンク</span></a></li>
+                        </ul>
+
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-book fa-fw"></i>C#とC++の値のやりとり</a>
+                        
+                        <ul>
+                            <li><a href="?page=nobu_tool_hm_dotnet_managed_mix_cs_cpp_01"><i class="fa fa-book fa-fw"></i><span id="nobu_tool_hm_dotnet_managed_mix_cs_cpp_01">Byte型とChar型</span></a></li>
+                            <li><a href="?page=nobu_tool_hm_dotnet_managed_mix_cs_cpp_02"><i class="fa fa-book fa-fw"></i><span id="nobu_tool_hm_dotnet_managed_mix_cs_cpp_02">整数型</span></a></li>
+                            <li><a href="?page=nobu_tool_hm_dotnet_managed_mix_cs_cpp_03"><i class="fa fa-book fa-fw"></i><span id="nobu_tool_hm_dotnet_managed_mix_cs_cpp_03">浮動小数型</span></a></li>
+                            <li><a href="?page=nobu_tool_hm_dotnet_managed_mix_cs_cpp_11"><i class="fa fa-book fa-fw"></i><span id="nobu_tool_hm_dotnet_managed_mix_cs_cpp_11">IntPtr型の独特な性質</span></a></li>
+                            <li><a href="?page=nobu_tool_hm_dotnet_managed_mix_cs_cpp_04"><i class="fa fa-book fa-fw"></i><span id="nobu_tool_hm_dotnet_managed_mix_cs_cpp_04">配列型</span></a></li>
+                            <li><a href="?page=nobu_tool_hm_dotnet_managed_mix_cs_cpp_05"><i class="fa fa-book fa-fw"></i><span id="nobu_tool_hm_dotnet_managed_mix_cs_cpp_05">配列とポインター(配列自体の変更)</span></a></li>
+                            <li><a href="?page=nobu_tool_hm_dotnet_managed_mix_cs_cpp_06"><i class="fa fa-book fa-fw"></i><span id="nobu_tool_hm_dotnet_managed_mix_cs_cpp_06">構造体と参照</span></a></li>
+                            <li><a href="?page=nobu_tool_hm_dotnet_managed_mix_cs_cpp_07"><i class="fa fa-book fa-fw"></i><span id="nobu_tool_hm_dotnet_managed_mix_cs_cpp_07">構造体の構造体</span></a></li>
+                            <li><a href="?page=nobu_tool_hm_dotnet_managed_mix_cs_cpp_08"><i class="fa fa-book fa-fw"></i><span id="nobu_tool_hm_dotnet_managed_mix_cs_cpp_08">固定配列を持つ構造体</span></a></li>
+                            <li><a href="?page=nobu_tool_hm_dotnet_managed_mix_cs_cpp_09"><i class="fa fa-book fa-fw"></i><span id="nobu_tool_hm_dotnet_managed_mix_cs_cpp_09">文字列</span></a></li>
+                            <li><a href="?page=nobu_tool_hm_dotnet_managed_mix_cs_cpp_10"><i class="fa fa-book fa-fw"></i><span id="nobu_tool_hm_dotnet_managed_mix_cs_cpp_10">WinapiとCdecl</span></a></li>
+                            <li><a href="?page=nobu_tool_hm_dotnet_managed_mix_cs_cpp_12"><i class="fa fa-book fa-fw"></i><span id="nobu_tool_hm_dotnet_managed_mix_cs_cpp_12">dllの関数名とは別名で使う</span></a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-file-image-o fa-fw"></i>画像やアイコン</a>
+                
+                <ul>
+                    <li><a href="?page=nobu_tool_hm_cool_body_icon"><i class="fa fa-file-image-o fa-fw"></i><span id="nobu_tool_hm_cool_body_icon">クールな秀丸アイコン</span></a></li>
+                    <li><a href="?page=nobu_tool_hm_icon_replacer"><i class="fa fa-file-image-o fa-fw"></i><span id="nobu_tool_hm_icon_replacer">タイトルバーのアイコンを一時変更</span></a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-font fa-fw"></i>フォント</a>
+                
+                <ul>
+                    <li  data-nav-active>
+                        <a href="?page=nobu_tool_hm_cool_font_rdd">
+                            <i class="fa fa-font fa-fw"></i><span id="nobu_tool_hm_cool_font_rdd">Ricty Diminished JPYen</span><br>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li><a href="https://github.com/komiyamma"><i class="fa fa-github fa-fw"></i>Github</a></li>
+            <li><a href="https://twitter.com/komiyamma"><i class="fa fa-twitter fa-fw"></i>Twitter</a></li>
+        </ul>
+    </nav -->
+<nav id="main-nav">
+  <ul>
+    <li>
+      <div>Some custom content</div>
+    </li>
+    <li><a href="#">Home</a></li>
+    <li>
+      <a href="#">About</a>
+      <ul data-nav-active><!-- or active attribute can be here -->
+        <li><a href="#">Team</a></li>
+        <li><a href="#">Project</a></li>
+        <li><a href="#">Services</a></li>
+      </ul>
+    </li>
+  </ul>
+            <h3>Examples</h3>
+
+            <ul class="second-nav">
+              <li class="collections"><a href="#collections">Collections <span>3</span></a></li>
+              <li class="nolink" data-nav-highlight>No Link</li>
+              <li class="disabled"><a href="#" disabled>Disabled Link</a></li>
+              <li class="add">
+                <a href="#" data-nav-close="false" data-add="['Charts', 'Logs', 'Tests', 'Profile']">Add Item</a>
+              </li>
+            </ul>
+            <ul class="bottom-nav">
+              <li class="icon1">
+                <a href="https://github.com/somewebmedia" rel="noreferrer" target="_blank">
+                  a
+                </a>
+              </li>
+              <li class="icon2">
+                <a href="mailto:somewebmedia@gmail.com" target="_blank">
+                  b
+                </a>
+              </li>
+              <li class="icon">
+                <a href="https://ko-fi.com/somewebguy" rel="noreferrer" target="_blank">
+                  a
+                </a>
+              </li>
+            </ul>
+
+
+
+</nav>
+         <div class="content">
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+aaa<br>
+aaa<br>
+
+</div>
+
+  <script>
+jQuery(document).ready(function($) {
+ let $nav = $('#main-nav').hcOffcanvasNav({
+    width: 350,
+    insertClose: false,
+    navTitle: '目次',
+    levelTitles: true,
+    levelTitleAsBack: false,
+    labelBack: "戻る",
+    disableBody: false,
+    levelOpen: "expand",
+    pushContent: ".content",
+    closeOnClick: false,
+    expanded: true
+  });
+ let Nav = $nav.data('hcOffcanvasNav');
+ 
+Nav.on('toggle', (e, settings) => {
+  if (e.data.action == 'open') {
+    // do something when `open` action is triggered
+   // alert("SUCCESS");
+  }
+});
+$(window).on('hashchange', function (event) {
+if(Nav.isOpen()) {
+event.preventDefault();
+Nav.close();
+}
+});		
+});
+  </script>
+</body>
+
+</html>
