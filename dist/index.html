@@ -1,8 +1,9 @@
 <!DOCTYPE HTML>
 <html lang="ja">
-
+metaでcharsetをutf8に
 <head>
   <title>a</title>
+  <meta charset="UTF-8">
   <link rel="stylesheet" href="hc-offcanvas-nav.css">
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="hc-offcanvas-nav.js?ver=6.1.5"></script>
@@ -79,7 +80,7 @@ body.theme-default .hc-offcanvas-nav .second-nav {
     <li><a href="#">Contact</a></li>
   </ul>
 </nav -->
-<!--nav id="main-nav">
+<nav id="main-nav">
         
         <ul>
             <li><a href="#"><i class="fa fa-hidemaru fa-fw"></i><span id="nobu_tool_hm_home">ホーム</span></a></li>
@@ -208,7 +209,7 @@ body.theme-default .hc-offcanvas-nav .second-nav {
                 <a href="#"><i class="fa fa-font fa-fw"></i>フォント</a>
                 
                 <ul>
-                    <li  data-nav-active>
+                    <li>
                         <a href="?page=nobu_tool_hm_cool_font_rdd">
                             <i class="fa fa-font fa-fw"></i><span id="nobu_tool_hm_cool_font_rdd">Ricty Diminished JPYen</span><br>
                         </a>
@@ -218,8 +219,8 @@ body.theme-default .hc-offcanvas-nav .second-nav {
             <li><a href="https://github.com/komiyamma"><i class="fa fa-github fa-fw"></i>Github</a></li>
             <li><a href="https://twitter.com/komiyamma"><i class="fa fa-twitter fa-fw"></i>Twitter</a></li>
         </ul>
-    </nav -->
-<nav id="main-nav">
+    </nav>
+<!-- nav id="main-nav">
   <ul>
     <li>
       <div>Some custom content</div>
@@ -233,7 +234,7 @@ body.theme-default .hc-offcanvas-nav .second-nav {
         <li><a href="#">Services</a></li>
       </ul>
     </li>
-  </ul>
+  </ul -->
             <h3>Examples</h3>
 
             <ul class="second-nav">
@@ -261,10 +262,27 @@ body.theme-default .hc-offcanvas-nav .second-nav {
                 </a>
               </li>
             </ul>
-
-
-
 </nav>
+
+<script>
+// ロケーションの引数の直近の親要素のulに data-nav-active を付与する
+const urlParams = new URLSearchParams(window.location.search);
+const urlParamPage = urlParams.get('page');
+
+if (urlParamPage) {
+console.log(urlParamPage);
+  const element = document.getElementById(urlParamPage);
+console.log(element);
+  if (element) {
+    const ulElement = element.closest('ul');
+    if (ulElement) {
+console.log(ulElement);
+      ulElement.setAttribute('data-nav-active', '');
+    }
+  }
+}
+</script>
+
          <div class="content">
 aaa<br>
 aaa<br>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Parcel Sandbox</title>
+    <meta charset="UTF-8" />
+  </head>
+
+  <script type="text/javascript">
+    const buttonClick1 = () => {
+      const state = { page_id: 1, user_id: 5 };
+      const title = '';
+      const url = 'hello-world.html';
+      window.history.pushState(state, title, url);
+    };
+
+    const buttonClick2 = () => {
+      const state = { page_id: 2, user_id: 8 };
+      const url = new URL(window.location);
+      url.searchParams.set('foo', 'bar');
+      window.history.pushState(state, '', url);
+    };
+  </script>
+
+  <body>
+    <h1>Hello Vanilla!</h1>
+    <input
+      type="button"
+      value="hello world"
+      onclick="buttonClick1()"
+    />
+    <input
+      type="button"
+      value="foo bar"
+      onclick="buttonClick2()"
+    />
+  </body>
+</html>
