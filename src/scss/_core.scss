@@ -192,6 +192,7 @@ body.hc-nav-open {
 
       &.nav-wrapper-0 {
         max-height: 100vh;
+        max-height: 100dvh;
 
         & > .nav-content {
           overflow: scroll;
@@ -199,6 +200,7 @@ body.hc-nav-open {
           overflow-y: auto;
           box-sizing: border-box;
           max-height: 100vh;
+          max-height: 100dvh;
         }
       }
     }
@@ -231,10 +233,12 @@ body.hc-nav-open {
       overflow-y: auto;
       box-sizing: border-box;
       max-height: 100vh;
+      max-height: 100dvh;
     }
 
     .nav-wrapper {
       max-height: 100vh;
+      max-height: 100dvh;
     }
 
     ul {
