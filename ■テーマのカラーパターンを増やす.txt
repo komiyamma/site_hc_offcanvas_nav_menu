@@ -1,0 +1,4 @@
+G:\repogitory\hc_offcanvas_nav_menu\src\scss フォルダ
+_theme-default.scss を編集（上３行）
+
+sass .\hc-offcanvas-nav.scss test.css とコマンド
