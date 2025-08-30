@@ -3,46 +3,40 @@ HC Off-canvas Nav
 
 [![Version](https://img.shields.io/npm/v/hc-offcanvas-nav.svg)](https://www.npmjs.com/package/hc-offcanvas-nav) [![Downloads](https://img.shields.io/npm/dt/hc-offcanvas-nav.svg)](https://www.npmjs.com/package/hc-offcanvas-nav)
 
-JavaScript library for creating off-canvas multi-level navigations, using ARIA. Dependency free, but also works as a jQuery plugin. [Demo](https://somewebmedia.github.io/hc-offcanvas-nav/)
+ARIAを使用した、オフキャンバスの多階層ナビゲーションを作成するためのJavaScriptライブラリです。依存関係はありませんが、jQueryプラグインとしても機能します。[デモ](https://somewebmedia.github.io/hc-offcanvas-nav/)
 
 <img src="https://somewebmedia.github.io/hc-offcanvas-nav/hc-offcanvas-nav.png" width="440">
 
+### 特徴
+- 多階層メニューのサポート
+- ナビゲーション要素の無限ネスト
+- メニュー項目内のカスタムコンテンツ
+- 選択したDOM要素のプッシュ/スライド
+- タッチスワイプジェスチャー
+- さまざまなナビゲーション位置
+- 依存関係なし
+- 柔軟でシンプルなマークアップ
+- 公開されている多数の[オプション](#options)、[メソッド](#methods)、[イベント](#events)
+- 2つの[テーマ](#themes)
+- クロスブラウザ互換性
+- 完全なARIAキーボードサポート
+  - <a href="https://www.w3.org/TR/wai-aria-practices/#dialog_modal">ダイアログの<abbr title="Accessible Rich Internet Application">ARIA</abbr>デザインパターン</a>に基づいています
+  - Tabキーでオフキャンバスナビゲーション内のすべてのフォーカス可能な項目をループします
+  - <kbd>Esc</kbd>キーで閉じることができます
 
+## クイックスタート
 
-### Features
-- Multi-level menu support
-- Endless nesting of navigation elements
-- Custom content inside menu items
-- Push/Slide DOM elements of choice
-- Touch swipe guestures
-- Different navigation positions
-- No dependencies
-- Flexible, simple markup
-- A number of exposed [Options](#options), [Methods](#methods) and [Events](#events)
-- 2 [Themes](#themes)
-- Cross-browser compatibility
-- Full ARIA keyboard support
-  - It relies on <a href="https://www.w3.org/TR/wai-aria-practices/#dialog_modal"><abbr title="Accessible Rich Internet Application">ARIA</abbr> Design pattern for Dialogs</a>
-  - The tab key loops through all of the keyboard focusable items within the offcanvas navigation
-  - You can close it using <kbd>Esc</kbd>
+### インストール
 
-
-
-## Quick start
-
-### Install
-
-This package can be installed with:
+このパッケージは下記の方法でインストールできます:
 
 - [npm](https://www.npmjs.com/package/hc-offcanvas-nav): `npm install --save hc-offcanvas-nav`
 
-Or download the [latest release](https://github.com/somewebmedia/hc-offcanvas-nav/tags).
+または、[最新リリース](https://github.com/somewebmedia/hc-offcanvas-nav/tags)をダウンロードしてください。
 
+### HC Off-canvas Navの読み込み
 
-
-### Including HC Off-canvas Nav
-
-#### Script and Css tag
+#### scriptタグとcssタグ
 ```html
 <link rel="stylesheet" href="/path/to/hc-offcanvas-nav.css">
 
@@ -51,7 +45,7 @@ Or download the [latest release](https://github.com/somewebmedia/hc-offcanvas-na
 
 #### Webpack/Browserify
 
-In the script, including HC Off-canvas Nav will usually look like this:
+スクリプト内でHC Off-canvas Navを読み込むには、通常このようになります:
 
 ```js
 const hcOffcanvasNav = require('hc-offcanvas-nav');
@@ -65,7 +59,7 @@ import hcOffcanvasNav from 'hc-offcanvas-nav';
 
 #### AMD (Asynchronous Module Definition)
 
-If using AMD, the module will be automatically defined as `hcOffcanvasNav`.
+AMDを使用している場合、モジュールは自動的に`hcOffcanvasNav`として定義されます。
 
 #### SCSS
 
@@ -75,10 +69,9 @@ If using AMD, the module will be automatically defined as `hcOffcanvasNav`.
 @import 'hc-offcanvas-nav/src/scss/theme-default';
 ```
 
+## 使い方
 
-## Usage
-
-Be sure to call the Nav once your menu element is available in the DOM.
+メニュー要素がDOMで利用可能になったら、Navを呼び出すようにしてください。
 
 #### Vanilla JS
 
@@ -112,9 +105,9 @@ jQuery(document).ready(function($) {
 });
 ```
 
-For HC Off-canvas Nav to work as a jQuery plugin, jQuery has to be a property of global `window` object, so be careful when using it in combination with Babel/Webpack/Browserify and jQuery.
+HC Off-canvas NavをjQueryプラグインとして動作させるには、jQueryがグローバルな`window`オブジェクトのプロパティである必要があります。Babel/Webpack/BrowserifyとjQueryを組み合わせて使用する場合は注意してください。
 
-#### Example HTML menu structure
+#### HTMLメニュー構造の例
 
 ```html
 <nav id="main-nav">
@@ -140,16 +133,15 @@ For HC Off-canvas Nav to work as a jQuery plugin, jQuery has to be a property of
 </nav>
 ```
 
+## テーマ
 
-## Themes
-
-HC Off-canvas Nav currently has 2 themes, the default and Carbon. To use Carbon theme simply call the Carbon theme css instead of the default one:
+HC Off-canvas Navには現在、デフォルトとCarbonの2つのテーマがあります。Carbonテーマを使用するには、デフォルトのCSSの代わりにCarbonテーマのCSSを呼び出します:
 
 ```html
 <link rel="stylesheet" href="/path/to/hc-offcanvas-nav.carbon.css">
 ```
 
-Or if compiling the SCSS from the `src` dir, `@include` it from there:
+`src`ディレクトリからSCSSをコンパイルする場合は、そこから`@include`します:
 
 ```scss
 @import 'hc-offcanvas-nav/src/scss/core';
@@ -157,55 +149,53 @@ Or if compiling the SCSS from the `src` dir, `@include` it from there:
 @import 'hc-offcanvas-nav/src/scss/theme-carbon';
 ```
 
+## オプション
 
-## Options
+| プロパティ | デフォルト | 型 | 説明 |
+|---|---|---|---|
+| **width** | `280` | int / str | ナビゲーションの幅。`left`と`right`の位置で使用されます。 |
+| **height** | `'auto'` | int / str | ナビゲーションの高さ。`top`と`bottom`の位置で使用されます。 |
+| **disableAt** | `false` | int / bool | この解像度以上でオフキャンバスメニューを非表示にし、元のメニューを表示します。 |
+| **pushContent** | `null` | str / Element obj | ナビゲーションが開いたときにプッシュされるコンテンツ要素（文字列セレクタまたはHTML要素オブジェクト）。 |
+| **expanded** | `false`| bool | メニューを展開モードで初期化します。コンテンツはプッシュされません。 |
+| **position** | `'left'` | str | メニューが開く位置。利用可能なオプション: `'left'`, `'right'`, `'top'`, `'bottom'`。 |
+| **swipeGestures** | `true`| bool | ネイティブアプリのような開閉スワイプジェスチャーを有効にします。`left`と`right`の位置でのみ機能します。 |
+| **levelOpen** | `'overlap'` | str | サブメニューレベルのオープンエフェクト。利用可能なオプション: `'overlap'`, `'expand'`, `'none'`または`false`。 |
+| **levelSpacing** | `40` | int | レベルがオーバーラップする場合、これはそれらの間の間隔です。展開または常に開いている場合、これはサブメニューのテキストインデントです。 |
+| **levelTitles** | `true` | bool | サブメニューに親アイテム名であるタイトルを表示します。オーバーラップしたレベルでのみ機能します。 |
+| **navTitle** | `null` | str / Element obj | メインナビゲーション（第1レベル）のタイトル。画像（ロゴ）のようなHTMLオブジェクトも可能です。 |
+| **navClass** | `''` | str | カスタムナビゲーションクラス。 |
+| **disableBody** | `true` | bool | ナビゲーションが開いているときにボディのスクロールを無効にします。 |
+| **closeOpenLevels** | `true` | bool | ナビゲーションが閉じるときに、開いているすべてのサブレベルを閉じる必要があります。 |
+| **closeActiveLevel** | `false` | bool | ナビゲーションが閉じるときに、最初にアクティブだったサブレベル（[`data-nav-active`](#data-attributes)を参照）をクリアする必要があります。 |
+| **closeOnClick** | `true` | bool | リンクがクリックされたときにナビゲーションを閉じます。 |
+| **closeOnEsc** | `true` | bool | <kbd>Esc</kbd>ボタンでナビゲーションを閉じます。 |
+| **customToggle** | `null` | str / Element obj | カスタムナビゲーショントグル要素。 |
+| **activeToggleClass** | `null` | str | カスタムのアクティブなトグルクラス。 |
+| **insertClose** | `true` | bool / int | ナビゲーションの閉じるボタンを挿入します。リスト内のボタンの位置となる0から始まるインデックスを表す整数も使用できます。負の数もサポートされています。 |
+| **insertBack** | `true` | bool / int | サブメニューに戻るボタンを挿入します。リスト内のボタンの位置となる0から始まるインデックスを表す整数も使用できます。負の数もサポートされています。オーバーラップしたレベルでのみ機能します。 |
+| **labelClose** | `''` | str | 閉じるボタンのラベル。 |
+| **labelBack** | `'Back'` | str | 戻るボタンのラベル。 |
+| **levelTitleAsBack** | `true` | bool | レベルタイトルを戻るラベルとして使用します。 |
+| **rtl** | `false` | bool | コンテンツの方向を右から左に設定します。 |
+| **bodyInsert** | `'prepend'` | str | ナビゲーションをbodyの先頭に追加するか、末尾に追加するかを選択します。 |
+| **keepClasses** | `true` | bool | 元のメニューとそのアイテムのクラスを保持するか除外するか。 |
+| **removeOriginalNav** | `false` | bool | 元のメニューをDOMから削除します。ナビゲーションを更新する予定がある場合は使用しないでください！ |
+| **ariaLabels** | `{...}` | obj | ARIA属性のラベル。HC Off-canvas Navを英語以外の言語で使用する場合は、すべてのプロパティを翻訳する必要があります。次のセクションを参照してください。 |
 
-| Property | Default | Type | Description |
-|----------|---------|------|-------------|
-| **width** | `280` | int / str | Width of the nav. Used for `left` and `right` positions. |
-| **height** | `'auto'` | int / str | Height of the nav. Used for `top` and `bottom` positions. |
-| **disableAt** | `false` | int / bool | Resolution above which to hide the offcanvas menu, and show the original. |
-| **pushContent** | `null` | str / Element obj | Content element (string selector or HTML Element object) that will be pushed when the navigation is open. |
-| **expanded** | `false`| bool | Initialize menu in expanded mode. It won't push content. |
-| **position** | `'left'` | str | Position on which the menu will open. Available options: `'left'`, `'right'`, `'top'` and `'bottom'`. |
-| **swipeGestures** | `true`| bool | Enable open/close swipe gestures like in native apps. Works only for `left` and `right` positions. |
-| **levelOpen** | `'overlap'` | str | Submenu levels open effect. Available options: `'overlap'`, `'expand'`, `'none'` or `false`. |
-| **levelSpacing** | `40` | int | If levels are overlaped, this is the spacing between them, if they are expanding or always open, this is the text indent of the submenus. |
-| **levelTitles** | `true` | bool | Show titles for submenus, which is the parent item name. Works only for overlaped levels. |
-| **navTitle** | `null` | str / Element obj | Main navigation (first level) title. Can also be HTML object like an image (logo). |
-| **navClass** | `''` | str | Custom navigation class. |
-| **disableBody** | `true` | bool | Disable body scroll when navigation is open. |
-| **closeOpenLevels** | `true` | bool | Should all open sub levels be closed when the nav closes. |
-| **closeActiveLevel** | `false` | bool | Should initially active sub level (see [`data-nav-active`](#data-attributes)) be cleared when the nav closes. |
-| **closeOnClick** | `true` | bool | Close the navigation when links are clicked. |
-| **closeOnEsc** | `true` | bool | Close the navigation on <kbd>Esc</kbd> button. |
-| **customToggle** | `null` | str / Element obj | Custom navigation toggle element. |
-| **activeToggleClass** | `null` | str | Custom active toggle class. |
-| **insertClose** | `true` | bool / int | Insert navigation close button. You can also use an integer representing 0-based index that will be the position of the button in the list. Negative numbers are also supported. |
-| **insertBack** | `true` | bool / int | Insert back buttons to submenus. You can also use an integer representing 0-based index that will be the position of the button in the list. Negative numbers are also supported. Works only for overlaped levels. |
-| **labelClose** | `''` | str | Label for the close button. |
-| **labelBack** | `'Back'` | str | Label for the back buttons. |
-| **levelTitleAsBack** | `true` | bool | Use level titles as back labels. |
-| **rtl** | `false` | bool | Set the content direction to right-to-left. |
-| **bodyInsert** | `'prepend'` | str | Choose to prepend or append navigation to body. |
-| **keepClasses** | `true` | bool | Should original menus and their items classes be preserved or excluded. |
-| **removeOriginalNav** | `false` | bool | Remove original menu from the DOM. Don't use this if planning to update the nav! |
-| **ariaLabels** | `{...}` | obj | Labels for the ARIA attributes. If using HC Off-canvas Nav in different language than English, you should translate all the properties. See the next section. |
-
-ARIA labels for the `aria-label` attributes on specific elements which will provide a text alternative to the elements that have no visible text on the screen.
+画面に表示されるテキストがない要素の`aria-label`属性のARIAラベル。
 
 ```js
 ariaLabels: {
-  open:     'Open Menu',
-  close:    'Close Menu',
-  submenu:  'Submenu'
+  open:     'メニューを開く',
+  close:    'メニューを閉じる',
+  submenu:  'サブメニュー'
 }
 ```
 
+## メソッド
 
-## Methods
-
-The HC Off-canvas Nav API offers a couple of methods to control the offcanvas and are publicly available to all active instances.
+HC Off-canvas Nav APIは、オフキャンバスを制御するためのいくつかのメソッドを提供し、すべてのアクティブなインスタンスで公開されています。
 
 #### Vanilla JS
 
@@ -222,7 +212,7 @@ var Nav = $nav.data('hcOffcanvasNav');
 
 ### .getSettings()
 
-Returns current settings.
+現在の設定を返します。
 
 ```js
 var currentSettings = Nav.getSettings();
@@ -230,17 +220,17 @@ var currentSettings = Nav.getSettings();
 
 ### .isOpen()
 
-Checks if the nav is open, and returns boolean.
+ナビゲーションが開いているかどうかを確認し、booleanを返します。
 
 ```js
 if (Nav.isOpen()) {
-  // do something
+  // 何かをする
 }
 ```
 
 ### .update(options, updateDOM)
 
-Updates just the specified settings with the new ones.
+指定された設定のみを新しいものに更新します。
 
 ```js
 Nav.update({
@@ -249,13 +239,13 @@ Nav.update({
 });
 ```
 
-Updates nav DOM. You don't have to pass empty settings object, the method is smart. Use this when original nav has been altered.
+ナビゲーションのDOMを更新します。空の設定オブジェクトを渡す必要はありません、メソッドは賢いです。元のナビゲーションが変更された場合に使用します。
 
 ```js
 Nav.update(true);
 ```
 
-Updates both settings and nav DOM. Use this when original nav was changed and you also want to update some specific settings.
+設定とナビゲーションDOMの両方を更新します。元のナビゲーションが変更され、特定の設定も更新したい場合に使用します。
 
 ```js
 Nav.update({
@@ -266,18 +256,18 @@ Nav.update({
 
 ### .open(level, index)
 
-Opens the nav if closed.
+ナビゲーションが閉じている場合に開きます。
 
 ```js
 Nav.open();
 ```
 
-Open the nav and also a specific sub menu. Each level sub menu has its own index that is relative to that level, not the parent menu.
+ナビゲーションを開き、特定のサブメニューも開きます。各レベルのサブメニューには、親メニューではなくそのレベルに相対的な独自のインデックスがあります。
 
 ```js
 Nav.open(2, 1);
 ```
-Above code will open the nested menu in the example structure bellow:
+上記のコードは、以下の例の構造でネストされたメニューを開きます:
 
 ```html
 <nav>
@@ -292,12 +282,10 @@ Above code will open the nested menu in the example structure bellow:
           </ul>
         </li>
         <li>
-
           <ul><!-- Level: 2, Index: 1 -->
             <li></li>
             <li></li>
           </ul>
-
         </li>
       </ul>
     </li>
@@ -319,7 +307,7 @@ Above code will open the nested menu in the example structure bellow:
 
 ### .close()
 
-Closes the nav if open.
+ナビゲーションが開いている場合に閉じます。
 
 ```js
 Nav.close();
@@ -327,7 +315,7 @@ Nav.close();
 
 ### .toggle()
 
-Toggles (open/close) the nav.
+ナビゲーションを開閉（トグル）します。
 
 ```js
 Nav.toggle();
@@ -335,55 +323,55 @@ Nav.toggle();
 
 ### .on(eventName, cb)
 
-Attach [Event](#events) listener to the nav.
+ナビゲーションに[イベント](#events)リスナーをアタッチします。
 
 ```js
 Nav.on('close', function() {
-  // do something on close
+  // close時になにかする
 });
 ```
 
 ### .off(eventName, cb)
 
-Remove [Event](#events) listener from the nav.
+ナビゲーションから[イベント](#events)リスナーを削除します。
 
 ```js
-// remove specific function
+// 特定の関数を削除
 Nav.off('close', onCloseFunction);
 
-// remove all event listeners
+// すべてのイベントリスナーを削除
 Nav.off('close');
 ```
 
-## Events
+## イベント
 
-| Event | Description |
-|-------|-------------|
-| **open** | Triggers each time after nav is opened. |
-| **open.level** | Triggers each time after any level is opened. |
-| **close** | Triggers each time after nav is closed. |
-| **close.once** | Triggers only the first time after nav is closed, and than it detaches itself. |
-| **close.level** | Triggers each time after any level is closed. |
-| **toggle** | Triggers each time nav is triggered to be opened or closed. |
+| イベント | 説明 |
+|---|---|
+| **open** | ナビゲーションが開かれた後に毎回トリガーされます。 |
+| **open.level** | いずれかのレベルが開かれた後に毎回トリガーされます。 |
+| **close** | ナビゲーションが閉じられた後に毎回トリガーされます。 |
+| **close.once** | ナビゲーションが閉じられた後に一度だけトリガーされ、その後自身をデタッチします。 |
+| **close.level** | いずれかのレベルが閉じられた後に毎回トリガーされます。 |
+| **toggle** | ナビゲーションが開閉されるたびにトリガーされます。 |
 
-All events return Event object as first argument, and the plugin Settings object as second argument.
+すべてのイベントは、最初の引数としてEventオブジェクトを、2番目の引数としてプラグインのSettingsオブジェクトを返します。
 
-- `open.level` and `close.level` return the newly opened level and index under the `Event.data` property.
-- `toggle` event returns the action under the `Event.data` property.
+- `open.level`と`close.level`は、新しく開かれたレベルとインデックスを`Event.data`プロパティで返します。
+- `toggle`イベントは、アクションを`Event.data`プロパティで返します。
 
-Open and close events are triggered after the nav animation is over, whie toggle event gets triggered imediatelly.
+開閉イベントはナビゲーションのアニメーションが終了した後にトリガーされますが、トグルイベントは即座にトリガーされます。
 
-Examples:
+例:
 
 ```js
-// change nav open position after each close
+// 閉じるたびにナビゲーションの開始位置を変更する
 Nav.on('close', function(e, settings) {
   Nav.update({
     position: settings.position === 'left' ? 'right' : 'left'
   });
 });
 
-// will change nav open position only once
+// 一度だけナビゲーションの開始位置を変更する
 Nav.on('close.once', function(e, settings) {
   Nav.update({
     position: settings.position === 'left' ? 'right' : 'left'
@@ -402,20 +390,19 @@ Nav.on('close.level', (e, settings) => {
 
 Nav.on('toggle', (e, settings) => {
   if (e.data.action == 'open') {
-    // do something when `open` action is triggered
+    // `open`アクションがトリガーされたときに何かをする
   }
 });
 ```
 
+## Data属性
 
-## Data Attributes
-
-| Attr | Accepts | HTML Element | Description |
-|------|---------|--------------|-------------|
-| **data-nav-active** | | `<ul>`, `<li>` | The next time nav opens it will open specified sub menu (or sub menu whose parent `<li>` element has the attribute). Works with [`expanded`](#options) option. |
-| **data-nav-highlight** | | `<li>` | Highlight list item. |
-| **data-nav-custom-content** | | `<li>` | Attached on the list items. Will clone item's content as is. |
-| **data-nav-close** | bool | `<a>` | Attached on the item links. Tells the nav if it needs to be closed on click or not. |
+| 属性 | 受け入れる値 | HTML要素 | 説明 |
+|---|---|---|---|
+| **data-nav-active** | | `<ul>`, `<li>` | 次回ナビゲーションが開くときに、指定されたサブメニュー（または親の`<li>`要素がこの属性を持つサブメニュー）を開きます。[`expanded`](#options)オプションと共に機能します。 |
+| **data-nav-highlight** | | `<li>` | リストアイテムをハイライトします。 |
+| **data-nav-custom-content** | | `<li>` | リストアイテムに添付されます。アイテムのコンテンツをそのまま複製します。 |
+| **data-nav-close** | bool | `<a>` | アイテムのリンクに添付されます。クリック時にナビゲーションを閉じる必要があるかどうかをナビゲーションに伝えます。 |
 
 ```html
 <nav id="main-nav">
@@ -426,7 +413,7 @@ Nav.on('toggle', (e, settings) => {
     <li data-nav-highlight><a href="#">Home</a></li>
     <li data-nav-active>
       <a href="#">About</a>
-      <ul data-nav-active><!-- or active attribute can be here -->
+      <ul data-nav-active><!-- またはactive属性はここにあってもよい -->
         <li><a href="#">Team</a></li>
         <li><a href="#">Project</a></li>
         <li><a href="#">Services</a></li>
@@ -438,14 +425,13 @@ Nav.on('toggle', (e, settings) => {
 </nav>
 ```
 
+### WordPressのdata属性統合
 
-### WordPress data attributes integration
-
-If you want to make your WordPress theme nav data ready, just place this code to your `functions.php` file and it should work out of the box. <strong>Do not assign this custom Walker to your `wp_nav_menu` arguments!</strong> And don't worry if you already use your own custom Walker, this code will take care of everything.
+WordPressテーマのナビゲーションをデータ対応にしたい場合は、このコードを`functions.php`ファイルに配置するだけで、すぐに機能するはずです。**このカスタムWalkerを`wp_nav_menu`の引数に割り当てないでください！** また、すでに独自のカスタムWalkerを使用していても心配ありません。このコードがすべてを処理します。
 
 ```php
 /*
- * Adds menu data support for HC Off-canvas Nav
+ * HC Off-canvas Navのメニューデータサポートを追加します
  */
 
 $hc_nav_menu_walker;
@@ -502,20 +488,16 @@ add_filter('wp_nav_menu_args', function($args) {
 });
 ```
 
+## 開発ビルド
 
+このパッケージには[Gulp](https://gulpjs.com/)が付属しています。以下のタスクが利用可能です:
 
-## Dev Building
+  * `default` JSとSCSSを`/dist`にコンパイルし、デモを`/docs`にビルドします。
+  * `demo` `default`タスクを実行し、デモのhtmlページを開きます。
+  * `watch` ソースのJSおよびSCSSファイルを監視し、保存するたびに自動的にビルドします。
 
-This package comes with [Gulp](https://gulpjs.com/). The following tasks are available:
+コンパイルされたJSとCssを最小化したくない場合は、`--dev`コマンドを渡すことができます。
 
-  * `default` compiles the JS and SCSS into `/dist` and builds the demos into `/docs`.
-  * `demo` executes `default` task and opens the demo html page.
-  * `watch` watches source JS and SCSS files and builds them automatically whenever you save.
+## ライセンス
 
-You can pass a `--dev` command if you don't want the compiled JS and Css to be minified.
-
-
-
-## License
-
-The code and the documentation are released under the MIT License.
+コードとドキュメントはMITライセンスの下でリリースされています。
